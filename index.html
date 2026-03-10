@@ -1,33 +1,24 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>Mr. Si!ent Gaming Hub</title>
-
-<link rel="stylesheet" href="css/style.css">
-
-</head>
-
 <body>
 
+<div class="layout">
+
+<aside class="sidebar">
+
+<h2>MR. SI!ENT</h2>
+
+<a href="index.html">🏠 Home</a>
+<a href="videos.html">🎬 Videos</a>
+<a href="live.html">🔴 Live</a>
+<a href="shorts.html">📱 Shorts</a>
+<a href="playlists.html">📂 Playlists</a>
+<a href="about.html">ℹ About</a>
+
+</aside>
+
+
+<main class="content">
+
 <header>
-
-<h1>MR. SI!ENT</h1>
-
-<nav class="menu">
-
-<a href="#home">🏠 Home</a>
-<a href="#videos">🎬 Videos</a>
-<a href="#live">🔴 Live</a>
-<a href="#shorts">📱 Shorts</a>
-<a href="#playlists">📂 Playlists</a>
-<a href="#about">ℹ About</a>
-
-</nav>
 
 <div class="stats">
 Subscribers: <span id="subs">0</span>
@@ -37,86 +28,18 @@ Subscribers: <span id="subs">0</span>
 
 </header>
 
-
-<section id="home">
+<section>
 
 <h2>🔥 Trending Videos</h2>
 
-<div id="trending" class="grid"></div>
+<div id="videos" class="grid"></div>
 
 </section>
 
-
-<section id="videos">
-
-<h2>🎬 Latest Videos</h2>
-
-<div id="videosList" class="grid"></div>
-
-</section>
-
-
-<section id="live">
-
-<h2>🔴 Live Stream</h2>
-
-<div class="live-stream">
-
-<iframe
-src="https://www.youtube.com/embed/live_stream?channel=UCKQ_q75TKeAcYXYeu0uaWlQ"
-allowfullscreen>
-</iframe>
+</main>
 
 </div>
-
-</section>
-
-
-<section id="shorts">
-
-<h2>📱 Shorts</h2>
-
-<div id="shortsList" class="grid"></div>
-
-</section>
-
-
-<section id="playlists">
-
-<h2>📂 Playlists</h2>
-
-<div id="playlistsList" class="grid"></div>
-
-</section>
-
-
-<section id="about">
-
-<h2>About Channel</h2>
-
-<p>
-Welcome to MR. SI!ENT Gaming Hub.  
-Here you will find Minecraft, Roblox, and ARK gameplay videos.
-</p>
-
-</section>
-
-
-<div id="playerModal" class="modal">
-
-<div class="modal-content">
-
-<span id="close">✖</span>
-
-<iframe id="player" allowfullscreen></iframe>
-
-</div>
-
-</div>
-
 
 <script src="js/script.js"></script>
 
 </body>
-
-</html>
