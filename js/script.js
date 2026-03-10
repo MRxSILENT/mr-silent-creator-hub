@@ -1,20 +1,15 @@
-
 const API_KEY="AIzaSyAJGq1CADFCPboHoNKo0fV8szdrie-_WnM"
 const CHANNEL_ID="UCKQ_q75TKeAcYXYeu0uaWlQ"
 
-const videosDiv=document.getElementById("videosList")
-const trendingDiv=document.getElementById("trending")
-
-const modal=document.getElementById("playerModal")
-const player=document.getElementById("player")
-const close=document.getElementById("close")
-
+const videosDiv=document.getElementById("videos")
 const subs=document.getElementById("subs")
 
 let videos=[]
 
 
-// animated subscriber counter
+// subscriber animation
+
+if(subs){
 
 fetch(
 `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`
@@ -45,9 +40,12 @@ clearInterval(interval)
 
 })
 
+}
 
 
 // load videos
+
+if(videosDiv){
 
 fetch(
 `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=20`
@@ -59,16 +57,17 @@ fetch(
 
 videos=data.items
 
-display(videosDiv,videos)
-
-display(trendingDiv,videos.slice(0,6))
+display(videos)
 
 })
 
+}
 
-function display(container,list){
 
-container.innerHTML=""
+
+function display(list){
+
+videosDiv.innerHTML=""
 
 list.forEach(v=>{
 
@@ -88,14 +87,11 @@ div.innerHTML=`
 
 div.onclick=()=>{
 
-modal.style.display="flex"
-
-player.src=
-`https://www.youtube.com/embed/${v.id.videoId}?autoplay=1`
+window.location=`watch.html?id=${v.id.videoId}`
 
 }
 
-container.appendChild(div)
+videosDiv.appendChild(div)
 
 }
 
@@ -105,20 +101,13 @@ container.appendChild(div)
 
 
 
-close.onclick=()=>{
+// search
 
-modal.style.display="none"
+const search=document.getElementById("search")
 
-player.src=""
+if(search){
 
-}
-
-
-
-// search filter
-
-document.getElementById("search")
-.addEventListener("input",e=>{
+search.addEventListener("input",e=>{
 
 let q=e.target.value.toLowerCase()
 
@@ -126,6 +115,8 @@ let filtered=videos.filter(v=>
 v.snippet.title.toLowerCase().includes(q)
 )
 
-display(videosDiv,filtered)
+display(filtered)
 
 })
+
+}
