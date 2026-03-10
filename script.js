@@ -1,4 +1,4 @@
-const API_KEY = "YOUR_API_KEY"
+const API_KEY = "AIzaSyAJGq1CADFCPboHoNKo0fV8szdrie-_WnM"
 const CHANNEL_ID = "YOUR_CHANNEL_ID"
 
 let videos = []
