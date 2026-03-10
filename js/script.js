@@ -1,55 +1,11 @@
-const API_KEY="AIzaSyAJGq1CADFCPboHoNKo0fV8szdrie-_WnM"
 const CHANNEL_ID="UCKQ_q75TKeAcYXYeu0uaWlQ"
 
 const videosDiv=document.getElementById("videos")
-const subs=document.getElementById("subs")
+const search=document.getElementById("search")
 
 let videos=[]
 
-
-// subscriber animation
-
-if(subs){
-
-fetch(
-`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`
-)
-
-.then(res=>res.json())
-
-.then(data=>{
-
-let count=parseInt(data.items[0].statistics.subscriberCount)
-
-let i=0
-
-let interval=setInterval(()=>{
-
-subs.innerText=i
-
-i+=Math.ceil(count/100)
-
-if(i>=count){
-
-subs.innerText=count
-clearInterval(interval)
-
-}
-
-},20)
-
-})
-
-}
-
-
-// load videos
-
-if(videosDiv){
-
-fetch(
-`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=20`
-)
+fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`)
 
 .then(res=>res.json())
 
@@ -61,39 +17,31 @@ display(videos)
 
 })
 
-}
-
-
 
 function display(list){
 
+if(!videosDiv) return
+
 videosDiv.innerHTML=""
 
-list.forEach(v=>{
+list.forEach(video=>{
 
-if(v.id.videoId){
+const videoId=video.link.split("v=")[1]
 
-let div=document.createElement("div")
+const div=document.createElement("div")
 
 div.className="video"
 
 div.innerHTML=`
-
-<img src="https://img.youtube.com/vi/${v.id.videoId}/maxresdefault.jpg">
-
-<p>${v.snippet.title}</p>
-
+<img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg">
+<p>${video.title}</p>
 `
 
 div.onclick=()=>{
-
-window.location=`watch.html?id=${v.id.videoId}`
-
+window.location=`watch.html?id=${videoId}`
 }
 
 videosDiv.appendChild(div)
-
-}
 
 })
 
@@ -101,18 +49,14 @@ videosDiv.appendChild(div)
 
 
 
-// search
-
-const search=document.getElementById("search")
-
 if(search){
 
 search.addEventListener("input",e=>{
 
-let q=e.target.value.toLowerCase()
+const q=e.target.value.toLowerCase()
 
-let filtered=videos.filter(v=>
-v.snippet.title.toLowerCase().includes(q)
+const filtered=videos.filter(v=>
+v.title.toLowerCase().includes(q)
 )
 
 display(filtered)
