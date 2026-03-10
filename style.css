@@ -1,70 +1,56 @@
 body{
 
 margin:0;
-background:black;
+background:#0a0a0a;
 color:white;
 font-family:Arial;
-
-}
-
-#three-bg{
-
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
 
 }
 
 header{
 
 text-align:center;
-padding:40px;
+padding:30px;
+background:#111;
 
 }
 
 h1{
 
-font-size:48px;
-color:#00ffff;
-text-shadow:0 0 20px cyan;
-
-}
-
-.stats{
-
-font-size:20px;
-margin:10px;
+color:cyan;
+font-size:40px;
 
 }
 
 #search{
 
 padding:10px;
-width:260px;
+width:250px;
 border:none;
-border-radius:6px;
+border-radius:5px;
+
+}
+
+section{
+
+padding:40px;
 
 }
 
 .grid{
 
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-padding:40px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
 
 }
 
 .video{
 
-background:#111;
-border-radius:12px;
+background:#181818;
+border-radius:10px;
 cursor:pointer;
 overflow:hidden;
-box-shadow:0 0 15px cyan;
 transition:.3s;
 
 }
@@ -87,24 +73,6 @@ padding:10px;
 
 }
 
-.live iframe{
-
-width:80%;
-height:420px;
-border:none;
-border-radius:10px;
-
-}
-
-#minecraft3d,
-#roblox3d,
-#ark3d{
-
-width:100%;
-height:400px;
-
-}
-
 .modal{
 
 display:none;
@@ -113,7 +81,7 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.9);
+background:rgba(0,0,0,.9);
 align-items:center;
 justify-content:center;
 
@@ -126,17 +94,10 @@ height:500px;
 
 }
 
-#closePlayer{
+#close{
 
 color:white;
 font-size:28px;
 cursor:pointer;
-
-}
-
-footer{
-
-text-align:center;
-padding:20px;
 
 }
