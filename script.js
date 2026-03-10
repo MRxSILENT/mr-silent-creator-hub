@@ -1,8 +1,6 @@
 const API_KEY = "AIzaSyAJGq1CADFCPboHoNKo0fV8szdrie-_WnM"
 const CHANNEL_ID = "UCKQ_q75TKeAcYXYeu0uaWlQ"
 
-let videos = []
-
 const videoContainer =
 document.getElementById("videos")
 
@@ -18,30 +16,28 @@ document.getElementById("views")
 const search =
 document.getElementById("search")
 
-// Channel statistics
+let videos=[]
+
+
+// channel statistics
 
 fetch(
 `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`
 )
 
 .then(res=>res.json())
+
 .then(data=>{
 
-let stats =
-data.items[0].statistics
+let stats=data.items[0].statistics
 
-subs.innerText =
-"Subscribers: "+stats.subscriberCount
-
-views.innerText =
-"Views: "+stats.viewCount
+subs.innerText="Subscribers: "+stats.subscriberCount
+views.innerText="Views: "+stats.viewCount
 
 })
 
 
-// Load videos
-
-function loadVideos(){
+// videos
 
 fetch(
 `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=20`
@@ -51,13 +47,11 @@ fetch(
 
 .then(data=>{
 
-videos = data.items
+videos=data.items
 
 displayVideos(videos)
 
 })
-
-}
 
 
 function displayVideos(list){
@@ -68,8 +62,7 @@ list.forEach(v=>{
 
 if(v.id.videoId){
 
-let div =
-document.createElement("div")
+let div=document.createElement("div")
 
 div.className="video"
 
@@ -94,11 +87,9 @@ videoContainer.appendChild(div)
 
 search.addEventListener("input",()=>{
 
-let text =
-search.value.toLowerCase()
+let text=search.value.toLowerCase()
 
-let filtered =
-videos.filter(v=>
+let filtered=videos.filter(v=>
 v.snippet.title.toLowerCase().includes(text)
 )
 
@@ -119,8 +110,7 @@ fetch(
 
 data.items.forEach(p=>{
 
-let div =
-document.createElement("div")
+let div=document.createElement("div")
 
 div.className="playlist"
 
@@ -141,6 +131,3 @@ playlistContainer.appendChild(div)
 })
 
 })
-
-
-loadVideos()
