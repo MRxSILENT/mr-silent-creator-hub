@@ -1,7 +1,8 @@
+
 const API_KEY="AIzaSyAJGq1CADFCPboHoNKo0fV8szdrie-_WnM"
 const CHANNEL_ID="UCKQ_q75TKeAcYXYeu0uaWlQ"
 
-const videosDiv=document.getElementById("videos")
+const videosDiv=document.getElementById("videosList")
 const trendingDiv=document.getElementById("trending")
 
 const modal=document.getElementById("playerModal")
@@ -13,7 +14,7 @@ const subs=document.getElementById("subs")
 let videos=[]
 
 
-// subscriber count
+// animated subscriber counter
 
 fetch(
 `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`
@@ -23,9 +24,27 @@ fetch(
 
 .then(data=>{
 
-subs.innerText=data.items[0].statistics.subscriberCount
+let count=parseInt(data.items[0].statistics.subscriberCount)
+
+let i=0
+
+let interval=setInterval(()=>{
+
+subs.innerText=i
+
+i+=Math.ceil(count/100)
+
+if(i>=count){
+
+subs.innerText=count
+clearInterval(interval)
+
+}
+
+},20)
 
 })
+
 
 
 // load videos
@@ -45,7 +64,6 @@ display(videosDiv,videos)
 display(trendingDiv,videos.slice(0,6))
 
 })
-
 
 
 function display(container,list){
@@ -97,7 +115,7 @@ player.src=""
 
 
 
-// search
+// search filter
 
 document.getElementById("search")
 .addEventListener("input",e=>{
